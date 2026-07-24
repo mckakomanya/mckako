@@ -1,0 +1,90 @@
+REPORTE DE DEPURACION
+======================================================================
+Registros: 21  |  Variables crudas: 26  |  Variables tras depuracion: 36
+Total de acciones de depuracion registradas: 68
+
+RESUMEN DE HALLAZGOS PRINCIPALES
+----------------------------------------------------------------------
+1. Ki67=99 en 4 casos triple negativo -> codigo centinela de 'no disponible' (99% es inverosimil); recodificado a ausente.
+2. Inconsistencias 'Si'/'Sí' (con tilde) en paciente 6 (CTV) -> unificado.
+3. Subtipo 'LuminalA'/'LuminalB' sin espacio (pac. 6, 13) -> unificado.
+4. Tto sistemico previo en texto libre (Neoady/Neoadyuvante/Adyuvante) -> variable binaria Si/No.
+5. Paciente 15: 'Adyuvante' pero ypT0ypN0 (respuesta completa) implica neoadyuvancia -> corregido a Si.
+6. Estadificacion 'Cis' -> estadio 0; '-' -> ausente.
+7. Paciente 11: estadio anatomico IIIA vs pronostico IB: incoherente (N2, G3, Luminal B) -> marcado para revision.
+8. Paciente 5: Semana_RD=0 con Gdo_RD=0 (imposible) -> ausente.
+9. Marcadores/GHF/Ki67 en carcinoma in situ (pac. 2, 18) -> ausentes.
+10. pT y pN parseados en categoria + prefijo (p/yp) + multifocalidad + micrometastasis + ganglio centinela.
+11. Paciente 3: Anastrozole (HT) con HT_concurrente=No -> marcado.
+
+DETALLE POR PACIENTE
+----------------------------------------------------------------------
+ Paciente                  Variable Valor_original                                                        Accion          Valor_final
+        1                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        1                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
+        2  Estadificacion_Anatomica            Cis                                    Cis (in situ) -> estadio 0                    0
+        2 Estadificacion_Pronostica              -                                                       ausente                  NaN
+        2                       GHF              -                                             ausente (in situ)                  NaN
+        2                      Her2              -                                       marca ausente (in situ)                  NaN
+        2                      Ki67              -                                             ausente (in situ)                  NaN
+        2                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        2                        pT            Cis                           parseo -> pT_cat/prefijo/multifocal       Tis (p, mf=No)
+        3            HT_concurrente    Anastrozole     nombre de farmaco en columna Si/No (HT concurrente) -> Si                   Si
+        3                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        3                        pT          T2(m)                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=Si)
+        4                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        4                        pT            T1b                           parseo -> pT_cat/prefijo/multifocal        T1 (p, mf=No)
+        5                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
+        5    Semana_Presentacion_RD              0                    Gdo_RD=0 y semana=0 (imposible) -> ausente                  NaN
+        5                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        5                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
+        6                  CTV_N_Ax             Sí                               corrige tilde/estandariza Si/No                   Si
+        6              CTV_N_III_SC             Sí                               corrige tilde/estandariza Si/No                   Si
+        6              Subtipo_Hist       LuminalB                                              unifica etiqueta            Luminal B
+        6                        pN            N1a                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
+        6                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
+        7                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
+        7           Tto_sist_pre_RT         Neoady                               recodifica texto libre -> Si/No                   Si
+        7                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        7                        pT          ypT1b                           parseo -> pT_cat/prefijo/multifocal       T1 (yp, mf=No)
+        8           Tto_sist_pre_RT         Neoady                               recodifica texto libre -> Si/No                   Si
+        8                        pN            N2a                              parseo -> pN_cat/micro/centinela N2 (micro=No, sn=No)
+        8                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
+        9           Tto_sist_pre_RT         Neoady                               recodifica texto libre -> Si/No                   Si
+        9                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+        9                        pT            T1b                           parseo -> pT_cat/prefijo/multifocal        T1 (p, mf=No)
+       10                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+       10                        pT            T1c                           parseo -> pT_cat/prefijo/multifocal        T1 (p, mf=No)
+       11 Estadificacion_Pronostica             IB  INCOHERENTE con anatomico IIIA (salto>=3 niveles) -> revisar  sin_cambio(marcado)
+       11                        pN            N2a                              parseo -> pN_cat/micro/centinela N2 (micro=No, sn=No)
+       11                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
+       12                        pN            N1a                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
+       12                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
+       13              Subtipo_Hist       LuminalA                                              unifica etiqueta            Luminal A
+       13                        pN             N1                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
+       13                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
+       14                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
+       14           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
+       14                        pN           ypN1                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
+       14                        pT           ypT2                           parseo -> pT_cat/prefijo/multifocal       T2 (yp, mf=No)
+       15           Tto_sist_pre_RT      Adyuvante etiqueta 'Adyuvante' pero ypT0ypN0 (hubo neoadyuvancia) -> Si                   Si
+       15                        pN           ypN0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+       15                        pT           ypT0                           parseo -> pT_cat/prefijo/multifocal       T0 (yp, mf=No)
+       16                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+       16                        pT            T1b                           parseo -> pT_cat/prefijo/multifocal        T1 (p, mf=No)
+       17                        pN       N1mi(sn)                              parseo -> pN_cat/micro/centinela N1 (micro=Si, sn=Si)
+       17                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
+       18  Estadificacion_Anatomica            Cis                                    Cis (in situ) -> estadio 0                    0
+       18 Estadificacion_Pronostica              -                                                       ausente                  NaN
+       18                      Ki67              -                                             ausente (in situ)                  NaN
+       18                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+       18                        pT            Cis                           parseo -> pT_cat/prefijo/multifocal       Tis (p, mf=No)
+       19                        pN            N1a                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
+       19                        pT         pT2(m)                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=Si)
+       20           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
+       20                        pN            N3a                              parseo -> pN_cat/micro/centinela N3 (micro=No, sn=No)
+       20                        pT            pT3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
+       21                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
+       21           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
+       21                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
+       21                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
