@@ -1,11 +1,11 @@
 REPORTE DE DEPURACION
 ======================================================================
-Registros: 21  |  Variables crudas: 26  |  Variables tras depuracion: 36
-Total de acciones de depuracion registradas: 68
+Registros: 21  |  Variables crudas: 26  |  Variables tras depuracion: 40
+Total de acciones de depuracion registradas: 64
 
 RESUMEN DE HALLAZGOS PRINCIPALES
 ----------------------------------------------------------------------
-1. Ki67=99 en 4 casos triple negativo -> codigo centinela de 'no disponible' (99% es inverosimil); recodificado a ausente.
+1. Ki67=99 en 4 casos: valores REALES medidos (confirmado con el investigador); se mantienen. Solo '-' (in situ) se marca ausente.
 2. Inconsistencias 'Si'/'Sí' (con tilde) en paciente 6 (CTV) -> unificado.
 3. Subtipo 'LuminalA'/'LuminalB' sin espacio (pac. 6, 13) -> unificado.
 4. Tto sistemico previo en texto libre (Neoady/Neoadyuvante/Adyuvante) -> variable binaria Si/No.
@@ -34,7 +34,6 @@ DETALLE POR PACIENTE
         3                        pT          T2(m)                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=Si)
         4                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
         4                        pT            T1b                           parseo -> pT_cat/prefijo/multifocal        T1 (p, mf=No)
-        5                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
         5    Semana_Presentacion_RD              0                    Gdo_RD=0 y semana=0 (imposible) -> ausente                  NaN
         5                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
         5                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
@@ -43,7 +42,6 @@ DETALLE POR PACIENTE
         6              Subtipo_Hist       LuminalB                                              unifica etiqueta            Luminal B
         6                        pN            N1a                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
         6                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
-        7                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
         7           Tto_sist_pre_RT         Neoady                               recodifica texto libre -> Si/No                   Si
         7                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
         7                        pT          ypT1b                           parseo -> pT_cat/prefijo/multifocal       T1 (yp, mf=No)
@@ -63,7 +61,6 @@ DETALLE POR PACIENTE
        13              Subtipo_Hist       LuminalA                                              unifica etiqueta            Luminal A
        13                        pN             N1                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
        13                        pT             T2                           parseo -> pT_cat/prefijo/multifocal        T2 (p, mf=No)
-       14                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
        14           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
        14                        pN           ypN1                              parseo -> pN_cat/micro/centinela N1 (micro=No, sn=No)
        14                        pT           ypT2                           parseo -> pT_cat/prefijo/multifocal       T2 (yp, mf=No)
@@ -84,7 +81,6 @@ DETALLE POR PACIENTE
        20           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
        20                        pN            N3a                              parseo -> pN_cat/micro/centinela N3 (micro=No, sn=No)
        20                        pT            pT3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)
-       21                      Ki67             99                                codigo centinela 99 -> ausente                  NaN
        21           Tto_sist_pre_RT   Neoadyuvante                               recodifica texto libre -> Si/No                   Si
        21                        pN             N0                              parseo -> pN_cat/micro/centinela N0 (micro=No, sn=No)
        21                        pT             T3                           parseo -> pT_cat/prefijo/multifocal        T3 (p, mf=No)

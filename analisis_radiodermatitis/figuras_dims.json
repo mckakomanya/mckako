@@ -1,0 +1,34 @@
+{
+ "fig1_poblacion_edad.png": [
+  1160,
+  459
+ ],
+ "fig2_poblacion_tumor.png": [
+  1420,
+  463
+ ],
+ "fig3_poblacion_tratamiento.png": [
+  900,
+  458
+ ],
+ "fig4_endpoint_rd.png": [
+  1160,
+  459
+ ],
+ "fig5_forest_aparicion.png": [
+  1052,
+  627
+ ],
+ "fig6_forest_significativa.png": [
+  1051,
+  627
+ ],
+ "fig7_km_global.png": [
+  817,
+  617
+ ],
+ "fig8_km_fraccionamiento.png": [
+  817,
+  647
+ ]
+}

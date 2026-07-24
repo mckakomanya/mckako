@@ -1,140 +1,129 @@
-# Análisis de base de datos oncológica — Radiodermitis en radioterapia de mama
+# Radiodermitis aguda en cáncer de mama tratado con radioterapia
 
-**Cohorte:** 21 pacientes con cáncer de mama tratadas con radioterapia adyuvante.
-**Endpoint principal:** radiodermitis aguda (grado máximo, escala 0–4, y semana de aparición).
-**Fecha:** 2026-07-24
+**Cohorte:** 21 pacientes · **Endpoint primario:** aparición de radiodermitis aguda (grado ≥ 1)
 
-El trabajo se realiza en dos pasos reproducibles:
+> **El informe completo es `Informe_Radiodermitis.docx`** (documento Word con metodología,
+> análisis de la muestra, resultados, 6 tablas y 8 figuras referenciadas en el texto).
+> Este archivo es un resumen técnico del pipeline.
 
-| Paso | Script | Salida |
-|------|--------|--------|
-| 1. Depuración | `01_depuracion.py` | `datos_limpios.csv`, `reporte_depuracion.txt` |
-| 2. Análisis | `02_analisis.py` | `resultados_estadisticos.txt`, `figuras/*.png` |
+---
+
+## Pipeline reproducible
 
 ```bash
-pip install pandas numpy scipy matplotlib
-python 01_depuracion.py
-python 02_analisis.py
+pip install pandas numpy scipy matplotlib pillow
+python 01_depuracion.py            # -> datos_limpios.csv, reporte_depuracion.txt
+python 02_analisis_poblacional.py  # -> resultados_poblacional.txt, figuras 1-4
+python 03_fisher_ic.py             # -> resultados_fisher.txt, figuras 5-6
+python 04_kaplan_meier.py          # -> resultados_kaplan_meier.txt, figuras 7-8
+python 05_exportar_resultados.py   # -> informe_datos.json, figuras_dims.json
+node 06_generar_informe.js         # -> Informe_Radiodermitis.docx
 ```
 
----
-
-## 1. Depuración de errores
-
-Se cotejó cada variable frente al libro de códigos y a la coherencia clínica.
-Se registraron **68 acciones** de depuración (traza completa en `reporte_depuracion.txt`).
-Los hallazgos relevantes:
-
-### 1.1. Errores de codificación (formato)
-
-| # | Problema | Pacientes | Corrección |
-|---|----------|-----------|------------|
-| 1 | `Sí` con tilde frente a `Si` | 6 (CTV) | Unificado a `Si` |
-| 2 | Subtipo sin espacio: `LuminalA`, `LuminalB` | 6, 13 | `Luminal A` / `Luminal B` |
-| 3 | Prefijos TNM mezclados (`T3`, `pT3`, `ypT2`, `T2(m)`) | varios | Se separan `pT_cat`, `pT_prefijo` (p/yp) y `Multifocal` |
-| 4 | pN heterogéneo (`N0`, `N1a`, `N1mi(sn)`, `N3a`, `ypN1`) | varios | Se derivan `pN_cat`, `pN_micro`, `pN_centinela`, `Ganglios_positivos` |
-
-### 1.2. Errores de contenido / valores imposibles
-
-| # | Problema | Pacientes | Decisión |
-|---|----------|-----------|----------|
-| 5 | **Ki67 = 99** repetido e idéntico en 4 triple negativo | 5, 7, 14, 21 | Código centinela de "no disponible" (99 % es inverosímil) → **ausente (NaN)** |
-| 6 | **Semana de RD = 0** con radiodermitis grado 0 (imposible: la RT empieza en la semana 1) | 5 | → ausente (NaN) |
-| 7 | Nombre de fármaco (`Anastrozole`) en la columna `HT_concurrente` (definida Si/No) | 3 | HT concurrente = **Sí**; fármaco preservado en `HT_farmaco` |
-| 8 | `Tto_sist_pre_RT` en texto libre (`Neoady`, `Neoadyuvante`, `Adyuvante`, `No`) | 7,8,14,15,20,21 | Recodificado a binaria `Tto_sist_previo` (Si/No) |
-| 9 | Etiqueta `Adyuvante` incompatible con respuesta completa **ypT0 ypN0** (hubo neoadyuvancia) | 15 | Corregido a Sí |
-
-### 1.3. Incoherencias marcadas para revisión clínica (no modificadas)
-
-- **Paciente 11:** estadio **anatómico IIIA** frente a **pronóstico IB**. Un salto de ≥3 niveles es implausible en enfermedad N2, grado 3, Luminal B HER2− (el estadio pronóstico debería ser superior, no inferior). Probable error de transcripción → requiere revisión de la fuente.
-- **Carcinomas in situ** (pac. 2 y 18): sin GHF/Ki67/HER2 ni estadificación TNM completa; `Cis` reclasificado como **estadio 0**. Se conservan en el descriptivo pero quedan fuera de los análisis que requieren estadificación invasiva.
+`comun.py` contiene las utilidades compartidas: IC de Wilson y Newcombe, OR condicional
+con IC exacto, y las implementaciones propias de **Kaplan-Meier** (varianza de Greenwood,
+IC log-log) y del **test de log-rank** (Mantel-Cox con HR de Peto).
 
 ---
 
-## 2. Análisis bioestadístico
+## 1. Depuración (64 acciones trazadas)
 
-> **n = 21.** Estudio exploratorio / generador de hipótesis. Por el tamaño muestral
-> y la naturaleza ordinal del grado de radiodermitis se emplean **pruebas exactas
-> (Fisher)** y **no paramétricas (Mann-Whitney, Kruskal-Wallis, Spearman)**. No se
-> aplican modelos multivariables ni corrección por comparaciones múltiples
-> (potencia insuficiente).
+| Incidencia | Casos | Resolución |
+|---|:--:|---|
+| Nomenclatura TNM heterogénea (`T3`,`pT3`,`ypT2`,`T2(m)`,`N1mi(sn)`) | 21 | Descompuesta en categoría + prefijo (p/yp) + multifocalidad + micrometástasis + centinela |
+| `Anastrozole` (fármaco) en columna binaria Sí/No | 1 | HT concurrente = **Sí**, fármaco conservado aparte |
+| Tto. sistémico en texto libre (`Neoady`/`Neoadyuvante`/`Adyuvante`) | 6 | Recodificado a binaria |
+| `Adyuvante` incompatible con **ypT0 ypN0** (respuesta completa) | 1 | Corregido a neoadyuvante |
+| Semana de presentación = 0 sin radiodermitis | 1 | Ausente (la RT empieza en semana 1) |
+| Variantes ortográficas (`Sí`/`Si`, `LuminalA`) | 4 | Unificadas |
+| Estadio `Cis` | 2 | Recodificado a estadio 0 |
+| Biomarcadores no evaluados en carcinoma in situ | 2 | Ausentes (no imputados) |
+| Estadio anatómico IIIA vs pronóstico IB (pac. 11) | 1 | Marcado para revisión, **no** modificado |
 
-### 2.1. Descriptivo de la cohorte
-
-- **Edad:** media 61,6 (DE 12,9); mediana 60 (RIC 58–72); rango 29–81.
-- **Comorbilidad:** diabetes 19 % (4/21); tabaquismo activo 10 % (2/21).
-- **Cirugía:** conservadora 81 % (17/21); mastectomía 19 % (4/21).
-- **Subtipo:** Luminal B 38 % · Triple negativo 24 % · HER2 14 % · Luminal A 14 % · in situ 10 %.
-- **Ganglios positivos:** 43 % (9/21).
-- **Tratamiento RT:** hipofraccionamiento 67 % (14/21) · normofraccionamiento 33 % (7/21); *boost* 38 %; irradiación ganglionar 43 %.
-- **Ki67:** mediana 22 (RIC 18–46) sobre 15 valores válidos (6 ausentes tras retirar el código 99).
-
-### 2.2. Endpoint — radiodermitis aguda
-
-| Grado | 0 | 1 | 2 | 3 |
-|-------|---|---|---|---|
-| N (%) | 7 (33 %) | 5 (24 %) | 4 (19 %) | 5 (24 %) |
-
-- **Radiodermitis significativa (≥ grado 2): 42,9 % (9/21).**
-- **Semana de aparición** (n=14 con RD≥1): mediana 4 (rango 2–5).
-
-### 2.3. Factores asociados a radiodermitis significativa (≥ grado 2)
-
-| Factor | Tasa expuestos | Tasa no exp. | OR | p (Fisher) |
-|--------|:---:|:---:|:---:|:---:|
-| **Normofraccionamiento** | **86 %** | **21 %** | **22,0** | **0,016** ✔ |
-| Irradiación ganglionar | 67 % | 25 % | 6,0 | 0,087 (tendencia) |
-| *Boost* | 38 % | 46 % | 0,70 | 1,00 |
-| Diabetes | 50 % | 41 % | 1,43 | 1,00 |
-| Tabaquismo | 50 % | 42 % | 1,38 | 1,00 |
-| Tto. sistémico previo | 43 % | 43 % | 1,00 | 1,00 |
-
-Sobre el **grado** de RD (variable ordinal, U de Mann-Whitney):
-
-- **Normofraccionamiento:** mediana grado **2** vs **0**; U=82, **p=0,011**, r=0,55 (**efecto grande**).
-- Irradiación ganglionar: mediana 2 vs 1; p=0,162, r=0,30 (efecto moderado, no significativo).
-- *Boost*, diabetes, tabaquismo, tto. previo: sin señal (p>0,5).
-
-**Grado vs subtipo** (Kruskal-Wallis): H=6,13, p=0,190 — sin diferencias significativas (Luminal B con la mediana más alta = 2).
-
-### 2.4. Correlaciones (Spearman)
-
-- Grado de RD ↔ **semana de aparición:** rho **0,60, p=0,023** — las reacciones más intensas aparecen más tarde (efecto de dosis acumulada).
-- Edad ↔ grado: rho 0,27, p=0,23 (no significativo).
-- Ki67 ↔ grado: rho −0,06, p=0,83 (nulo).
-
-### 2.5. Hallazgo clave y factor de confusión
-
-El **normofraccionamiento** es el único predictor con asociación robusta y de gran
-efecto sobre la radiodermitis, coherente con la evidencia (los esquemas
-hipofraccionados producen **menos toxicidad cutánea aguda**).
-
-Sin embargo, existe **confusión casi perfecta con la irradiación ganglionar**:
-
-| | Ganglionar No | Ganglionar Sí |
-|---|:---:|:---:|
-| **Hipofx** | 12 | 2 |
-| **Normofx** | 0 | 7 |
-
-Los **7** pacientes normofraccionados recibieron **todos** irradiación ganglionar,
-y los **2 únicos** hipofraccionados con irradiación ganglionar (pac. 6 y 8)
-tuvieron **grado 0**. Esto sugiere que la señal la impulsa el **fraccionamiento**
-(y el volumen/dosis total asociado), más que el volumen ganglionar en sí. Con
-n=21 **no es posible separar ambos efectos**; se necesitaría una muestra mayor y
-un modelo multivariable.
+**Ki67 = 99 %:** valores **reales** confirmados con el investigador. Se mantienen en todos
+los análisis; solo se consideran ausentes los 2 casos in situ no evaluados.
 
 ---
 
-## 3. Conclusiones
+## 2. Análisis poblacional
 
-1. La base contenía errores sistemáticos corregibles: un **código centinela (Ki67=99)** que de no detectarse habría sesgado el Ki67 al alza en los triple negativo, texto libre donde se esperaba binaria, un fármaco en una columna Sí/No, una semana imposible y una estadificación pronóstica incoherente (pac. 11).
-2. La radiodermitis **≥ grado 2 afectó al 43 %** de la cohorte.
-3. El **normofraccionamiento** se asocia de forma marcada a mayor radiodermitis (86 % vs 21 %; p=0,016), con **efecto grande** sobre el grado — pero **confundido con la irradiación ganglionar**.
-4. Las reacciones más graves aparecen **más tardíamente** durante el tratamiento (rho=0,60).
-5. Diabetes, tabaquismo, *boost*, subtipo y tratamiento sistémico previo **no** mostraron asociación, si bien el estudio está **infrapotenciado** (p. ej. tabaquismo n=2).
+- **Edad:** media 61,6 ± 12,9; mediana 60 (RIC 58–72); rango 29–81. Normal (Shapiro-Wilk p=0,326).
+- **Comorbilidad:** diabetes 19 % · tabaquismo activo 9,5 %.
+- **Tumor:** T2 38 % · ganglios positivos 43 % · grado 3 en 65 % · Luminal B 38 %, triple negativo 24 %.
+- **Ki67:** mediana 30 % (RIC 20–83; rango 9–99), fuertemente asimétrico (p=0,002).
+- **Tratamiento:** conservadora 81 % · hipofx 67 % · boost 38 % · irradiación ganglionar 43 %.
 
-**Recomendaciones para la base de datos:** definir un código explícito de ausente (p. ej. celda vacía, nunca `99`/`0`); restringir las columnas binarias a `Si/No`; usar un esquema TNM homogéneo (prefijo p/yp separado); y verificar la estadificación pronóstica del paciente 11.
+**Colinealidad crítica:** las **7/7** pacientes normofraccionadas recibieron irradiación
+ganglionar, frente a **2/14** hipofraccionadas (p<0,001). Ambas exposiciones son
+inseparables con este tamaño muestral.
 
 ---
 
-*Análisis reproducible: `01_depuracion.py` → `02_analisis.py`. Figuras en `figuras/`.*
+## 3. Test exacto de Fisher con IC 95 %
+
+OR condicional (máxima verosimilitud) con **IC exacto**; riesgos con IC de Wilson;
+diferencia de riesgos con IC de Newcombe.
+
+### Aparición de radiodermitis (≥ grado 1) — 14/21 (66,7 %)
+
+| Factor | Expuestas | No expuestas | Dif. riesgo (IC95%) | p |
+|---|:--:|:--:|:--:|:--:|
+| **Normofraccionamiento** | **100 %** | **50 %** | **+50,0 (7,6 a 73,2)** | **0,047** |
+| Irradiación ganglionar | 77,8 % | 58,3 % | +19,4 (−20,0 a 50,2) | 0,642 |
+| Boost | 87,5 % | 53,8 % | +33,7 (−7,9 a 60,4) | 0,174 |
+| Diabetes | 100 % | 58,8 % | +41,2 (−11,6 a 64,0) | 0,255 |
+
+> **Discordancia p vs IC:** el OR del normofraccionamiento es ∞ (celda con cero: ninguna
+> normofraccionada quedó libre de RD) y su IC exacto (0,93–∞) incluye el 1 pese a p=0,047.
+> No es un error: el IC de Cornfield es **conservador** respecto al p bilateral de Fisher.
+> La medida interpretable aquí es la **diferencia de riesgos**, que sí excluye el 0.
+
+### Radiodermitis significativa (≥ grado 2) — 9/21 (42,9 %)
+
+| Factor | Expuestas | No expuestas | OR (IC95%) | p |
+|---|:--:|:--:|:--:|:--:|
+| **Normofraccionamiento** | **85,7 %** | **21,4 %** | **18,09 (1,44–1100)** | **0,016** |
+| Irradiación ganglionar | 66,7 % | 25,0 % | 5,44 (0,66–60,6) | 0,087 |
+
+---
+
+## 4. Kaplan-Meier — supervivencia libre de radiodermitis
+
+Origen: primera sesión de RT. Evento: primera radiodermitis de cualquier grado.
+**14 eventos, 7 censuradas.**
+
+**Censura:** las libres de evento se censuran en la primera visita post-RT (duración + 1
+semana), porque la radiodermitis aguda alcanza su pico 1–2 semanas *tras* finalizar la RT
+—de hecho 2 pacientes con esquemas de 3 semanas debutaron en la 4.ª—. Censurar al terminar
+la RT habría generado **censura informativa**.
+
+| Semana | En riesgo | Eventos | Superv. libre de RD | IC95% |
+|:--:|:--:|:--:|:--:|:--:|
+| 0 | 21 | 0 | 100 % | — |
+| 2 | 21 | 2 | 90,5 % | 67,0–97,5 |
+| 3 | 19 | 4 | 71,4 % | 47,2–86,0 |
+| 4 | 15 | 7 | 38,1 % | 18,3–57,8 |
+| 5 | 2 | 1 | 19,0 % | 1,7–50,9 |
+
+- **Mediana de supervivencia libre de radiodermitis: 4 semanas.**
+- Por fraccionamiento: log-rank χ²=1,76, **p=0,185**, HR (Peto) 1,81. Sin diferencia
+  significativa en el *tiempo* hasta la aparición.
+- Análisis de sensibilidad (censura al fin de RT): p=0,982. La conclusión cualitativa se
+  mantiene, pero el estadístico es **muy sensible** al criterio de censura — señal de
+  fragilidad con 14 eventos.
+
+---
+
+## 5. Conclusiones
+
+1. Radiodermitis de cualquier grado en **66,7 %**; ≥ grado 2 en **42,9 %**; ninguna grado 4.
+2. El **normofraccionamiento** es el único factor asociado significativamente a la aparición
+   (p=0,047) y a la gravedad (p=0,016) — pero **confundido con la irradiación ganglionar**.
+3. Mediana de supervivencia libre de radiodermitis: **4 semanas**; los eventos se concentran
+   entre las semanas 3 y 4.
+4. Las reacciones más graves aparecen **más tarde** (Spearman rho=0,60; p=0,023).
+5. No se demostró diferencia en la *velocidad* de aparición entre esquemas.
+
+**Limitaciones:** n=21 con 14 eventos (potencia baja); colinealidad fraccionamiento–volumen
+ganglionar; semana registrada en enteros (censura por intervalo no modelada); todas las
+censuras en el grupo hipofx. Análisis **exploratorio y generador de hipótesis**.

@@ -1,22 +1,22 @@
-Paciente,Edad,Diabetes,Tabaquismo_Actual,Cirugia,pT,pT_cat,pT_prefijo,Multifocal,pN,pN_cat,pN_micro,pN_centinela,Ganglios_positivos,M,GHF,Her2,PR,ER,Ki67,OncoType,Estadificacion_Anatomica,Estadificacion_Pronostica,Subtipo_Hist,Tto_sist_previo,Tipo_Tto_Sist,HT_concurrente,HT_farmaco,Fraccionamiento,Boost,CTV_N_Ax,CTV_N_III_SC,Irradiacion_ganglionar,Mayor_Gdo_RD,RD_significativa,Semana_Presentacion_RD
-1,59,Si,No,CC,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,Si,Si,Si,12.0,No,IIB,IIIB,Her2,No,,No,,Hipofx,Si,No,No,No,1,No,2.0
-2,60,No,No,CC,Cis,Tis,p,No,N0,N0,No,No,No,M0,,,Si,Si,,No,0,,Cis,No,,No,,Hipofx,No,No,No,No,0,No,
-3,72,Si,Si,CC,T2(m),T2,p,Si,N0,N0,No,No,No,M0,2.0,No,Si,Si,15.0,No,IIB,IIA,Luminal A,No,,Si,Anastrozole,Normofx,Si,No,Si,Si,2,Si,4.0
-4,43,No,Si,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,2.0,No,Si,Si,22.0,No,IA,IA,Luminal A,No,,No,,Hipofx,Si,No,No,No,0,No,
-5,69,No,No,CC,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,No,No,No,,No,IIB,IIIA,Triple Neg,No,,No,,Hipofx,No,No,No,No,0,No,
-6,47,No,No,CC,T2,T2,p,No,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,30.0,No,IIB,IIB,Luminal B,No,,No,,Hipofx,No,Si,Si,Si,0,No,
-7,48,No,No,CC,ypT1b,T1,yp,No,N0,N0,No,No,No,M0,3.0,No,No,No,,No,IIB,IIIB,Triple Neg,Si,QT,No,,Hipofx,No,No,No,No,3,Si,4.0
-8,58,No,No,Mastectomia,T2,T2,p,No,N2a,N2,No,No,Si,M0,3.0,Si,No,No,40.0,No,IIIA,IIIA,Her2,Si,Trastuzumab,No,,Hipofx,No,No,Si,Si,0,No,
-9,80,No,No,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,3.0,Si,Si,Si,70.0,No,IA,IA,Her2,Si,Trastuzumab,No,,Hipofx,No,No,No,No,1,No,3.0
-10,52,No,No,CC,T1c,T1,p,No,N0,N0,No,No,No,M0,2.0,No,Si,Si,20.0,No,IA,IA,Luminal B,No,,No,,Hipofx,No,No,No,No,2,Si,3.0
-11,81,No,No,CC,T2,T2,p,No,N2a,N2,No,No,Si,M0,3.0,No,Si,Si,53.0,No,IIIA,IB,Luminal B,No,,No,,Normofx,Si,Si,Si,Si,3,Si,3.0
-12,73,No,No,CC,T2,T2,p,No,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,20.0,No,IIB,IIB,Luminal B,No,,No,,Normofx,Si,Si,Si,Si,2,Si,4.0
-13,61,No,No,CC,T2,T2,p,No,N1,N1,No,No,Si,M0,3.0,No,Si,Si,9.0,No,IIB,IIB,Luminal A,No,,No,,Normofx,Si,No,Si,Si,1,No,3.0
-14,29,No,No,Mastectomia,ypT2,T2,yp,No,ypN1,N1,No,No,Si,M0,3.0,No,No,No,,No,IIB,IIIC,Triple Neg,Si,Pembrolizumab,No,,Normofx,No,Si,Si,Si,3,Si,4.0
-15,58,No,No,CC,ypT0,T0,yp,No,ypN0,N0,No,No,No,M0,3.0,No,No,No,90.0,No,IA,IA,Triple Neg,Si,Pembrolizumab,No,,Hipofx,Si,No,No,No,1,No,4.0
-16,74,No,No,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,2.0,No,No,Si,20.0,No,IA,IA,Luminal B,No,,No,,Hipofx,No,No,No,No,3,Si,4.0
-17,59,Si,No,CC,T3,T3,p,No,N1mi(sn),N1,Si,Si,Si,M0,3.0,No,Si,Si,22.0,No,IIIA,IIIA,Luminal B,No,,No,,Hipofx,Si,No,No,No,1,No,2.0
-18,60,No,No,CC,Cis,Tis,p,No,N0,N0,No,No,No,M0,3.0,No,Si,Si,,No,0,,Cis,No,,No,,Hipofx,No,No,No,No,0,No,
-19,72,Si,No,CC,pT2(m),T2,p,Si,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,17.0,No,IIA,IIA,Luminal B,No,,No,,Normofx,No,No,Si,Si,2,Si,4.0
-20,70,No,No,Mastectomia,pT3,T3,p,No,N3a,N3,No,No,Si,M0,3.0,No,Si,Si,75.0,No,IIIC,IIIC,Luminal B,Si,Paclitaxel,No,,Normofx,No,Si,Si,Si,3,Si,5.0
-21,69,No,No,Mastectomia,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,No,No,No,,No,IIB,IIB,Triple Neg,Si,Adriamicina/Ciclofosfamida,No,,Hipofx,No,No,No,No,0,No,
+Paciente,Edad,Diabetes,Tabaquismo_Actual,Cirugia,pT,pT_cat,pT_prefijo,Multifocal,pN,pN_cat,pN_micro,pN_centinela,Ganglios_positivos,M,GHF,Her2,PR,ER,Ki67,OncoType,Estadificacion_Anatomica,Estadificacion_Pronostica,Subtipo_Hist,Tto_sist_previo,Tipo_Tto_Sist,HT_concurrente,HT_farmaco,Fraccionamiento,Boost,CTV_N_Ax,CTV_N_III_SC,Irradiacion_ganglionar,Mayor_Gdo_RD,RD_significativa,Semana_Presentacion_RD,Duracion_RT_sem,Fin_seguimiento_sem,KM_tiempo,KM_evento
+1,59,Si,No,CC,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,Si,Si,Si,12.0,No,IIB,IIIB,Her2,No,,No,,Hipofx,Si,No,No,No,1,No,2.0,4,5,2.0,1
+2,60,No,No,CC,Cis,Tis,p,No,N0,N0,No,No,No,M0,,,Si,Si,,No,0,,Cis,No,,No,,Hipofx,No,No,No,No,0,No,,3,4,4.0,0
+3,72,Si,Si,CC,T2(m),T2,p,Si,N0,N0,No,No,No,M0,2.0,No,Si,Si,15.0,No,IIB,IIA,Luminal A,No,,Si,Anastrozole,Normofx,Si,No,Si,Si,2,Si,4.0,6,7,4.0,1
+4,43,No,Si,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,2.0,No,Si,Si,22.0,No,IA,IA,Luminal A,No,,No,,Hipofx,Si,No,No,No,0,No,,4,5,5.0,0
+5,69,No,No,CC,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,No,No,No,99.0,No,IIB,IIIA,Triple Neg,No,,No,,Hipofx,No,No,No,No,0,No,,3,4,4.0,0
+6,47,No,No,CC,T2,T2,p,No,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,30.0,No,IIB,IIB,Luminal B,No,,No,,Hipofx,No,Si,Si,Si,0,No,,3,4,4.0,0
+7,48,No,No,CC,ypT1b,T1,yp,No,N0,N0,No,No,No,M0,3.0,No,No,No,99.0,No,IIB,IIIB,Triple Neg,Si,QT,No,,Hipofx,No,No,No,No,3,Si,4.0,3,4,4.0,1
+8,58,No,No,Mastectomia,T2,T2,p,No,N2a,N2,No,No,Si,M0,3.0,Si,No,No,40.0,No,IIIA,IIIA,Her2,Si,Trastuzumab,No,,Hipofx,No,No,Si,Si,0,No,,3,4,4.0,0
+9,80,No,No,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,3.0,Si,Si,Si,70.0,No,IA,IA,Her2,Si,Trastuzumab,No,,Hipofx,No,No,No,No,1,No,3.0,3,4,3.0,1
+10,52,No,No,CC,T1c,T1,p,No,N0,N0,No,No,No,M0,2.0,No,Si,Si,20.0,No,IA,IA,Luminal B,No,,No,,Hipofx,No,No,No,No,2,Si,3.0,3,4,3.0,1
+11,81,No,No,CC,T2,T2,p,No,N2a,N2,No,No,Si,M0,3.0,No,Si,Si,53.0,No,IIIA,IB,Luminal B,No,,No,,Normofx,Si,Si,Si,Si,3,Si,3.0,6,7,3.0,1
+12,73,No,No,CC,T2,T2,p,No,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,20.0,No,IIB,IIB,Luminal B,No,,No,,Normofx,Si,Si,Si,Si,2,Si,4.0,6,7,4.0,1
+13,61,No,No,CC,T2,T2,p,No,N1,N1,No,No,Si,M0,3.0,No,Si,Si,9.0,No,IIB,IIB,Luminal A,No,,No,,Normofx,Si,No,Si,Si,1,No,3.0,6,7,3.0,1
+14,29,No,No,Mastectomia,ypT2,T2,yp,No,ypN1,N1,No,No,Si,M0,3.0,No,No,No,99.0,No,IIB,IIIC,Triple Neg,Si,Pembrolizumab,No,,Normofx,No,Si,Si,Si,3,Si,4.0,5,6,4.0,1
+15,58,No,No,CC,ypT0,T0,yp,No,ypN0,N0,No,No,No,M0,3.0,No,No,No,90.0,No,IA,IA,Triple Neg,Si,Pembrolizumab,No,,Hipofx,Si,No,No,No,1,No,4.0,4,5,4.0,1
+16,74,No,No,CC,T1b,T1,p,No,N0,N0,No,No,No,M0,2.0,No,No,Si,20.0,No,IA,IA,Luminal B,No,,No,,Hipofx,No,No,No,No,3,Si,4.0,3,4,4.0,1
+17,59,Si,No,CC,T3,T3,p,No,N1mi(sn),N1,Si,Si,Si,M0,3.0,No,Si,Si,22.0,No,IIIA,IIIA,Luminal B,No,,No,,Hipofx,Si,No,No,No,1,No,2.0,4,5,2.0,1
+18,60,No,No,CC,Cis,Tis,p,No,N0,N0,No,No,No,M0,3.0,No,Si,Si,,No,0,,Cis,No,,No,,Hipofx,No,No,No,No,0,No,,3,4,4.0,0
+19,72,Si,No,CC,pT2(m),T2,p,Si,N1a,N1,No,No,Si,M0,2.0,No,Si,Si,17.0,No,IIA,IIA,Luminal B,No,,No,,Normofx,No,No,Si,Si,2,Si,4.0,5,6,4.0,1
+20,70,No,No,Mastectomia,pT3,T3,p,No,N3a,N3,No,No,Si,M0,3.0,No,Si,Si,75.0,No,IIIC,IIIC,Luminal B,Si,Paclitaxel,No,,Normofx,No,Si,Si,Si,3,Si,5.0,5,6,5.0,1
+21,69,No,No,Mastectomia,T3,T3,p,No,N0,N0,No,No,No,M0,3.0,No,No,No,99.0,No,IIB,IIB,Triple Neg,Si,Adriamicina/Ciclofosfamida,No,,Hipofx,No,No,No,No,0,No,,3,4,4.0,0

@@ -1,0 +1,155 @@
+==========================================================================
+ANALISIS POBLACIONAL — COHORTE DE CANCER DE MAMA CON RADIOTERAPIA
+==========================================================================
+Poblacion de estudio: N = 21 pacientes
+
+2.1. CARACTERISTICAS DEMOGRAFICAS Y COMORBILIDAD
+--------------------------------------------------------------------------
+  Edad (anos) (n=21)
+     Media (DE)      : 61,6 (12,9)
+     Mediana (RIC)   : 60,0 (58,0-72,0)
+     Rango           : 29,0-81,0
+     Shapiro-Wilk    : p=0,326 (distribucion normal)
+
+  Grupo etario (anos) (n=21)
+     >=65                  :  9 (42,9%)  IC95% 24,5-63,5%
+     50-64                 :  8 (38,1%)  IC95% 20,8-59,1%
+     <50                   :  4 (19,0%)  IC95% 7,7-40,0%
+
+  Diabetes mellitus (n=21)
+     No                    : 17 (81,0%)  IC95% 60,0-92,3%
+     Si                    :  4 (19,0%)  IC95% 7,7-40,0%
+  Tabaquismo activo (n=21)
+     No                    : 19 (90,5%)  IC95% 71,1-97,3%
+     Si                    :  2 (9,5%)  IC95% 2,7-28,9%
+
+2.2. CARACTERISTICAS TUMORALES E HISTOPATOLOGICAS
+--------------------------------------------------------------------------
+  Categoria T (pT) (n=21)
+     T2                    :  8 (38,1%)  IC95% 20,8-59,1%
+     T3                    :  5 (23,8%)  IC95% 10,6-45,1%
+     T1                    :  5 (23,8%)  IC95% 10,6-45,1%
+     Tis                   :  2 (9,5%)  IC95% 2,7-28,9%
+     T0                    :  1 (4,8%)  IC95% 0,8-22,7%
+  Categoria N (pN) (n=21)
+     N0                    : 12 (57,1%)  IC95% 36,5-75,5%
+     N1                    :  6 (28,6%)  IC95% 13,8-50,0%
+     N2                    :  2 (9,5%)  IC95% 2,7-28,9%
+     N3                    :  1 (4,8%)  IC95% 0,8-22,7%
+  Afectacion ganglionar (n=21)
+     No                    : 12 (57,1%)  IC95% 36,5-75,5%
+     Si                    :  9 (42,9%)  IC95% 24,5-63,5%
+  Grado histologico (GHF) (n=20)
+     3.0                   : 13 (65,0%)  IC95% 43,3-81,9%
+     2.0                   :  7 (35,0%)  IC95% 18,1-56,7%
+  Subtipo molecular (n=21)
+     Luminal B             :  8 (38,1%)  IC95% 20,8-59,1%
+     Triple Neg            :  5 (23,8%)  IC95% 10,6-45,1%
+     Her2                  :  3 (14,3%)  IC95% 5,0-34,6%
+     Luminal A             :  3 (14,3%)  IC95% 5,0-34,6%
+     Cis                   :  2 (9,5%)  IC95% 2,7-28,9%
+  Estadio anatomico (n=21)
+     IIB                   :  9 (42,9%)  IC95% 24,5-63,5%
+     IA                    :  5 (23,8%)  IC95% 10,6-45,1%
+     IIIA                  :  3 (14,3%)  IC95% 5,0-34,6%
+     0                     :  2 (9,5%)  IC95% 2,7-28,9%
+     IIA                   :  1 (4,8%)  IC95% 0,8-22,7%
+     IIIC                  :  1 (4,8%)  IC95% 0,8-22,7%
+  Multifocalidad (n=21)
+     No                    : 19 (90,5%)  IC95% 71,1-97,3%
+     Si                    :  2 (9,5%)  IC95% 2,7-28,9%
+
+  Receptor de estrogeno (ER) (n=21)
+     Si                    : 15 (71,4%)  IC95% 50,0-86,2%
+     No                    :  6 (28,6%)  IC95% 13,8-50,0%
+  Receptor de progesterona (PR) (n=21)
+     Si                    : 14 (66,7%)  IC95% 45,4-82,8%
+     No                    :  7 (33,3%)  IC95% 17,2-54,6%
+  Sobreexpresion HER2 (n=20)
+     No                    : 17 (85,0%)  IC95% 64,0-94,8%
+     Si                    :  3 (15,0%)  IC95% 5,2-36,0%
+
+  Ki67 (%) (n=19)
+     Media (DE)      : 47,9 (35,2)
+     Mediana (RIC)   : 30,0 (20,0-82,5)
+     Rango           : 9,0-99,0
+     Shapiro-Wilk    : p=0,002 (NO normal -> pruebas no parametricas)
+     Ki67 alto (>=20%): 15/19 (78,9%) IC95% 56,7-91,5%
+     Nota: 2 casos de carcinoma in situ sin Ki67 evaluado.
+
+2.3. CARACTERISTICAS DEL TRATAMIENTO
+--------------------------------------------------------------------------
+  Tipo de cirugia (n=21)
+     CC                    : 17 (81,0%)  IC95% 60,0-92,3%
+     Mastectomia           :  4 (19,0%)  IC95% 7,7-40,0%
+  Tratamiento sistemico previo a RT (n=21)
+     No                    : 14 (66,7%)  IC95% 45,4-82,8%
+     Si                    :  7 (33,3%)  IC95% 17,2-54,6%
+     Esquemas empleados: Adriamicina/Ciclofosfamida, Paclitaxel, Pembrolizumab, QT, Trastuzumab
+  Hormonoterapia concurrente (n=21)
+     No                    : 20 (95,2%)  IC95% 77,3-99,2%
+     Si                    :  1 (4,8%)  IC95% 0,8-22,7%
+
+  Esquema de fraccionamiento (n=21)
+     Hipofx                : 14 (66,7%)  IC95% 45,4-82,8%
+     Normofx               :  7 (33,3%)  IC95% 17,2-54,6%
+  Sobreimpresion (boost) (n=21)
+     No                    : 13 (61,9%)  IC95% 40,9-79,2%
+     Si                    :  8 (38,1%)  IC95% 20,8-59,1%
+  CTV ganglionar axilar (n=21)
+     No                    : 16 (76,2%)  IC95% 54,9-89,4%
+     Si                    :  5 (23,8%)  IC95% 10,6-45,1%
+  CTV nivel III / supraclavicular (n=21)
+     No                    : 12 (57,1%)  IC95% 36,5-75,5%
+     Si                    :  9 (42,9%)  IC95% 24,5-63,5%
+  Irradiacion ganglionar (cualquiera) (n=21)
+     No                    : 12 (57,1%)  IC95% 36,5-75,5%
+     Si                    :  9 (42,9%)  IC95% 24,5-63,5%
+
+  Duracion prevista de la RT (semanas) (n=21)
+     Media (DE)      : 4,0 (1,2)
+     Mediana (RIC)   : 4,0 (3,0-5,0)
+     Rango           : 3,0-6,0
+     Shapiro-Wilk    : p=<0,001 (NO normal -> pruebas no parametricas)
+
+2.4. ENDPOINT PRIMARIO — RADIODERMITIS AGUDA
+--------------------------------------------------------------------------
+  Distribucion del grado maximo (escala RTOG/CTCAE 0-4):
+     Grado 0:  7 (33,3%)  IC95% 17,2-54,6%
+     Grado 1:  5 (23,8%)  IC95% 10,6-45,1%
+     Grado 2:  4 (19,0%)  IC95% 7,7-40,0%
+     Grado 3:  5 (23,8%)  IC95% 10,6-45,1%
+  Radiodermitis cualquier grado (>=1)   : 14/21 (66,7%) IC95% 45,4-82,8%
+  Radiodermitis significativa (>=2)     :  9/21 (42,9%) IC95% 24,5-63,5%
+  Radiodermitis severa (>=3)            :  5/21 (23,8%) IC95% 10,6-45,1%
+
+  Semana de aparicion (solo casos con RD) (n=14)
+     Media (DE)      : 3,5 (0,9)
+     Mediana (RIC)   : 4,0 (3,0-4,0)
+     Rango           : 2,0-5,0
+     Shapiro-Wilk    : p=0,033 (NO normal -> pruebas no parametricas)
+
+2.5. COMPARABILIDAD DE LA POBLACION SEGUN FRACCIONAMIENTO
+--------------------------------------------------------------------------
+  (Tabla 1: contraste de las caracteristicas basales entre esquemas)
+  Hipofraccionamiento n=14 | Normofraccionamiento n=7
+
+  Edad (anos)                mediana 59,0 vs 72,0  p=0,093
+  Ki67 (%)                   mediana 35,0 vs 20,0  p=0,307
+  Diabetes                   2/14 (14,3%) vs 2/7 (28,6%)  p=0,574
+  Tabaquismo activo          1/14 (7,1%) vs 1/7 (14,3%)  p=1,000
+  Mastectomia                2/14 (14,3%) vs 2/7 (28,6%)  p=0,574
+  Ganglios positivos         3/14 (21,4%) vs 6/7 (85,7%)  p=0,016
+  Irradiacion ganglionar     2/14 (14,3%) vs 7/7 (100,0%)  p=<0,001
+  Boost                      4/14 (28,6%) vs 4/7 (57,1%)  p=0,346
+  Tto. sistemico previo      5/14 (35,7%) vs 2/7 (28,6%)  p=1,000
+
+  HALLAZGO CRITICO — colinealidad entre exposiciones:
+     Irradiacion_ganglionar  No  Si
+Fraccionamiento               
+Hipofx                  12   2
+Normofx                  0   7
+     Los 7 pacientes normofraccionados recibieron TODOS irradiacion
+     ganglionar y ningun normofraccionado prescindio de ella. Ambas
+     exposiciones estan casi perfectamente confundidas: sus efectos
+     no son separables con este tamano muestral.

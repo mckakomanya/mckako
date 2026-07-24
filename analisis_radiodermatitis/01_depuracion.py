@@ -97,9 +97,11 @@ def main():
                       "NaN" if pd.isna(nv) else nv)
         df[col] = nuevo
 
-    # ---- 5. Ki67: '99' es codigo centinela de AUSENTE, no un porcentaje - #
-    #  El valor 99 se repite identico en 4 casos triple negativo; un Ki67 de
-    #  99% es biologicamente inverosimil => se interpreta como "no disponible".
+    # ---- 5. Ki67 (indice de proliferacion, %) --------------------------- #
+    #  Los valores de 99 son valores REALES medidos en esas pacientes
+    #  (confirmado con el investigador) y se mantienen como tales.
+    #  Solo se marcan como ausentes los '-' (carcinoma in situ, no evaluado)
+    #  y los valores fuera del rango biologico 0-100.
     ki = []
     for i, o in enumerate(df["Ki67"]):
         v = a_nan(o)
@@ -108,11 +110,7 @@ def main():
             anota(df.loc[i, "Paciente"], "Ki67", o, "ausente (in situ)", "NaN")
             continue
         v = float(v)
-        if v == 99:
-            ki.append(np.nan)
-            anota(df.loc[i, "Paciente"], "Ki67", o,
-                  "codigo centinela 99 -> ausente", "NaN")
-        elif v < 0 or v > 100:
+        if v < 0 or v > 100:
             ki.append(np.nan)
             anota(df.loc[i, "Paciente"], "Ki67", o, "fuera de rango 0-100", "NaN")
         else:
@@ -302,6 +300,40 @@ def main():
     df["Irradiacion_ganglionar"] = np.where(
         (df["CTV_N_Ax"] == "Si") | (df["CTV_N_III_SC"] == "Si"), "Si", "No")
 
+    # ---- 19. Variables tiempo-a-evento para Kaplan-Meier ---------------- #
+    #  Duracion prevista del tratamiento (semanas), usada como tiempo de
+    #  censura en quienes nunca desarrollaron radiodermitis:
+    #     Hipofx  40 Gy / 15 fx  = 3 semanas   (+ boost 10 Gy / 4 fx ~ +1 sem)
+    #     Normofx 50 Gy / 25 fx  = 5 semanas   (+ boost 10 Gy / 4 fx ~ +1 sem)
+    base_sem = df["Fraccionamiento"].map({"Hipofx": 3, "Normofx": 5})
+    df["Duracion_RT_sem"] = base_sem + (df["Boost"] == "Si").astype(int)
+
+    #  Ventana de observacion: la radiodermitis aguda alcanza su pico 1-2
+    #  semanas DESPUES de finalizar la RT (de hecho, los pacientes 7 y 16,
+    #  con esquemas de 3 semanas, debutaron en la semana 4). Por tanto el
+    #  seguimiento se extiende hasta la primera visita post-RT (+1 semana).
+    #  Censurar a los libres de evento al terminar la RT generaria censura
+    #  informativa (los sacaria del riesgo antes del pico de toxicidad).
+    df["Fin_seguimiento_sem"] = df["Duracion_RT_sem"] + 1
+
+    #  Evento = aparicion de radiodermitis de CUALQUIER grado (>=1).
+    #  Tiempo  = semana de aparicion (evento) o fin de seguimiento (censura).
+    df["KM_evento"] = (df["Mayor_Gdo_RD"] >= 1).astype(int)
+    df["KM_tiempo"] = np.where(
+        df["KM_evento"] == 1,
+        df["Semana_Presentacion_RD"],
+        df["Fin_seguimiento_sem"],
+    )
+    #  Control de calidad: ningun tiempo puede exceder la ventana observada.
+    for i in range(len(df)):
+        if df.loc[i, "KM_evento"] == 1 and pd.notna(df.loc[i, "KM_tiempo"]):
+            if df.loc[i, "KM_tiempo"] > df.loc[i, "Fin_seguimiento_sem"]:
+                anota(df.loc[i, "Paciente"], "Semana_Presentacion_RD",
+                      df.loc[i, "KM_tiempo"],
+                      f"semana de RD posterior a la ventana de seguimiento "
+                      f"({df.loc[i,'Fin_seguimiento_sem']} sem) -> revisar",
+                      "sin_cambio(marcado)")
+
     # ------------------------------------------------------------------ #
     # Salidas
     # ------------------------------------------------------------------ #
@@ -314,7 +346,8 @@ def main():
         "Tto_sist_previo", "Tipo_Tto_Sist", "HT_concurrente", "HT_farmaco",
         "Fraccionamiento", "Boost", "CTV_N_Ax", "CTV_N_III_SC",
         "Irradiacion_ganglionar", "Mayor_Gdo_RD", "RD_significativa",
-        "Semana_Presentacion_RD",
+        "Semana_Presentacion_RD", "Duracion_RT_sem", "Fin_seguimiento_sem",
+        "KM_tiempo", "KM_evento",
     ]
     df_out = df[cols_orden]
     df_out.to_csv(LIMPIO, index=False)
@@ -333,8 +366,8 @@ def main():
         f.write("RESUMEN DE HALLAZGOS PRINCIPALES\n")
         f.write("-" * 70 + "\n")
         resumen = [
-            "1. Ki67=99 en 4 casos triple negativo -> codigo centinela de 'no "
-            "disponible' (99% es inverosimil); recodificado a ausente.",
+            "1. Ki67=99 en 4 casos: valores REALES medidos (confirmado con el "
+            "investigador); se mantienen. Solo '-' (in situ) se marca ausente.",
             "2. Inconsistencias 'Si'/'Sí' (con tilde) en paciente 6 (CTV) -> unificado.",
             "3. Subtipo 'LuminalA'/'LuminalB' sin espacio (pac. 6, 13) -> unificado.",
             "4. Tto sistemico previo en texto libre (Neoady/Neoadyuvante/Adyuvante) "

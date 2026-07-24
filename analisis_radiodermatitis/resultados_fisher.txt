@@ -1,0 +1,220 @@
+==========================================================================
+ANALISIS INFERENCIAL — TEST EXACTO DE FISHER CON IC95%
+==========================================================================
+Metodo: test exacto de Fisher bilateral. El odds ratio se estima por
+maxima verosimilitud condicional y su IC95% es el intervalo EXACTO
+condicional (no aproximacion de Wald), apropiado con n pequeno y
+frecuencias esperadas < 5. Los riesgos llevan IC de Wilson y la
+diferencia de riesgos el IC hibrido de Newcombe.
+
+==========================================================================
+(a) ENDPOINT PRIMARIO: APARICION DE RADIODERMITIS (cualquier grado)
+==========================================================================
+  Eventos: 14/21 (66,7%)
+
+  Normofraccionamiento (vs hipofx)
+     Tabla 2x2       expuestos: 7 con / 0 sin evento  |  no expuestos: 7 con / 7 sin evento
+     Riesgo expuestos    : 100,0% (IC95% 64,6-100,0%)  n=7
+     Riesgo no expuestos : 50,0% (IC95% 26,8-73,2%)  n=14
+     Diferencia de riesgo: 50,0 puntos (IC95% 7,6 a 73,2)
+     Riesgo relativo     : 2,00
+     Odds ratio (cond.)  : ∞ (IC95% exacto 0,93 - ∞)  [OR muestral con correccion de Haldane: 15,00]
+     p (Fisher bilateral): 0,047   ** SIGNIFICATIVO **
+
+  Irradiacion ganglionar
+     Tabla 2x2       expuestos: 7 con / 2 sin evento  |  no expuestos: 7 con / 5 sin evento
+     Riesgo expuestos    : 77,8% (IC95% 45,3-93,7%)  n=9
+     Riesgo no expuestos : 58,3% (IC95% 32,0-80,7%)  n=12
+     Diferencia de riesgo: 19,4 puntos (IC95% -20,0 a 50,2)
+     Riesgo relativo     : 1,33
+     Odds ratio (cond.)  : 2,39 (IC95% exacto 0,27 - 33,40)
+     p (Fisher bilateral): 0,642
+
+  Ganglios positivos
+     Tabla 2x2       expuestos: 7 con / 2 sin evento  |  no expuestos: 7 con / 5 sin evento
+     Riesgo expuestos    : 77,8% (IC95% 45,3-93,7%)  n=9
+     Riesgo no expuestos : 58,3% (IC95% 32,0-80,7%)  n=12
+     Diferencia de riesgo: 19,4 puntos (IC95% -20,0 a 50,2)
+     Riesgo relativo     : 1,33
+     Odds ratio (cond.)  : 2,39 (IC95% exacto 0,27 - 33,40)
+     p (Fisher bilateral): 0,642
+
+  Sobreimpresion (boost)
+     Tabla 2x2       expuestos: 7 con / 1 sin evento  |  no expuestos: 7 con / 6 sin evento
+     Riesgo expuestos    : 87,5% (IC95% 52,9-97,8%)  n=8
+     Riesgo no expuestos : 53,8% (IC95% 29,1-76,8%)  n=13
+     Diferencia de riesgo: 33,7 puntos (IC95% -7,9 a 60,4)
+     Riesgo relativo     : 1,62
+     Odds ratio (cond.)  : 5,53 (IC95% exacto 0,47 - 314,61)
+     p (Fisher bilateral): 0,174
+
+  Mastectomia (vs conservadora)
+     Tabla 2x2       expuestos: 2 con / 2 sin evento  |  no expuestos: 12 con / 5 sin evento
+     Riesgo expuestos    : 50,0% (IC95% 15,0-85,0%)  n=4
+     Riesgo no expuestos : 70,6% (IC95% 46,9-86,7%)  n=17
+     Diferencia de riesgo: -20,6 puntos (IC95% -59,1 a 21,7)
+     Riesgo relativo     : 0,71
+     Odds ratio (cond.)  : 0,44 (IC95% exacto 0,02 - 7,59)
+     p (Fisher bilateral): 0,574
+
+  Diabetes mellitus
+     Tabla 2x2       expuestos: 4 con / 0 sin evento  |  no expuestos: 10 con / 7 sin evento
+     Riesgo expuestos    : 100,0% (IC95% 51,0-100,0%)  n=4
+     Riesgo no expuestos : 58,8% (IC95% 36,0-78,4%)  n=17
+     Diferencia de riesgo: 41,2 puntos (IC95% -11,6 a 64,0)
+     Riesgo relativo     : 1,70
+     Odds ratio (cond.)  : ∞ (IC95% exacto 0,34 - ∞)  [OR muestral con correccion de Haldane: 6,43]
+     p (Fisher bilateral): 0,255
+
+  Tabaquismo activo
+     Tabla 2x2       expuestos: 1 con / 1 sin evento  |  no expuestos: 13 con / 6 sin evento
+     Riesgo expuestos    : 50,0% (IC95% 9,5-90,5%)  n=2
+     Riesgo no expuestos : 68,4% (IC95% 46,0-84,6%)  n=19
+     Diferencia de riesgo: -18,4 puntos (IC95% -62,1 a 27,9)
+     Riesgo relativo     : 0,73
+     Odds ratio (cond.)  : 0,48 (IC95% exacto 0,01 - 42,21)
+     p (Fisher bilateral): 1,000
+
+  Tto. sistemico previo
+     Tabla 2x2       expuestos: 5 con / 2 sin evento  |  no expuestos: 9 con / 5 sin evento
+     Riesgo expuestos    : 71,4% (IC95% 35,9-91,8%)  n=7
+     Riesgo no expuestos : 64,3% (IC95% 38,8-83,7%)  n=14
+     Diferencia de riesgo: 7,1 puntos (IC95% -33,3 a 39,8)
+     Riesgo relativo     : 1,11
+     Odds ratio (cond.)  : 1,37 (IC95% exacto 0,14 - 19,48)
+     p (Fisher bilateral): 1,000
+
+  Edad >= 65 anos
+     Tabla 2x2       expuestos: 7 con / 2 sin evento  |  no expuestos: 7 con / 5 sin evento
+     Riesgo expuestos    : 77,8% (IC95% 45,3-93,7%)  n=9
+     Riesgo no expuestos : 58,3% (IC95% 32,0-80,7%)  n=12
+     Diferencia de riesgo: 19,4 puntos (IC95% -20,0 a 50,2)
+     Riesgo relativo     : 1,33
+     Odds ratio (cond.)  : 2,39 (IC95% exacto 0,27 - 33,40)
+     p (Fisher bilateral): 0,642
+
+  Ki67 >= 20%
+     Tabla 2x2       expuestos: 10 con / 5 sin evento  |  no expuestos: 4 con / 0 sin evento
+     Riesgo expuestos    : 66,7% (IC95% 41,7-84,8%)  n=15
+     Riesgo no expuestos : 100,0% (IC95% 51,0-100,0%)  n=4
+     Diferencia de riesgo: -33,3 puntos (IC95% -58,3 a 18,9)
+     Riesgo relativo     : 0,67
+     Odds ratio (cond.)  : 0,00 (IC95% exacto 0,00 - 4,38)  [OR muestral con correccion de Haldane: 0,21]
+     p (Fisher bilateral): 0,530
+
+
+==========================================================================
+(b) ENDPOINT SECUNDARIO: RADIODERMITIS SIGNIFICATIVA (>= grado 2)
+==========================================================================
+  Eventos: 9/21 (42,9%)
+
+  Normofraccionamiento (vs hipofx)
+     Tabla 2x2       expuestos: 6 con / 1 sin evento  |  no expuestos: 3 con / 11 sin evento
+     Riesgo expuestos    : 85,7% (IC95% 48,7-97,4%)  n=7
+     Riesgo no expuestos : 21,4% (IC95% 7,6-47,6%)  n=14
+     Diferencia de riesgo: 64,3 puntos (IC95% 18,9 a 82,4)
+     Riesgo relativo     : 4,00
+     Odds ratio (cond.)  : 18,09 (IC95% exacto 1,44 - 1100,21)
+     p (Fisher bilateral): 0,016   ** SIGNIFICATIVO **
+
+  Irradiacion ganglionar
+     Tabla 2x2       expuestos: 6 con / 3 sin evento  |  no expuestos: 3 con / 9 sin evento
+     Riesgo expuestos    : 66,7% (IC95% 35,4-87,9%)  n=9
+     Riesgo no expuestos : 25,0% (IC95% 8,9-53,2%)  n=12
+     Diferencia de riesgo: 41,7 puntos (IC95% -0,4 a 68,4)
+     Riesgo relativo     : 2,67
+     Odds ratio (cond.)  : 5,44 (IC95% exacto 0,66 - 60,56)
+     p (Fisher bilateral): 0,087
+
+  Ganglios positivos
+     Tabla 2x2       expuestos: 5 con / 4 sin evento  |  no expuestos: 4 con / 8 sin evento
+     Riesgo expuestos    : 55,6% (IC95% 26,7-81,1%)  n=9
+     Riesgo no expuestos : 33,3% (IC95% 13,8-60,9%)  n=12
+     Diferencia de riesgo: 22,2 puntos (IC95% -17,7 a 54,4)
+     Riesgo relativo     : 1,67
+     Odds ratio (cond.)  : 2,39 (IC95% exacto 0,31 - 20,98)
+     p (Fisher bilateral): 0,396
+
+  Sobreimpresion (boost)
+     Tabla 2x2       expuestos: 3 con / 5 sin evento  |  no expuestos: 6 con / 7 sin evento
+     Riesgo expuestos    : 37,5% (IC95% 13,7-69,4%)  n=8
+     Riesgo no expuestos : 46,2% (IC95% 23,2-70,9%)  n=13
+     Diferencia de riesgo: -8,7 puntos (IC95% -43,0 a 30,7)
+     Riesgo relativo     : 0,81
+     Odds ratio (cond.)  : 0,71 (IC95% exacto 0,08 - 5,73)
+     p (Fisher bilateral): 1,000
+
+  Mastectomia (vs conservadora)
+     Tabla 2x2       expuestos: 2 con / 2 sin evento  |  no expuestos: 7 con / 10 sin evento
+     Riesgo expuestos    : 50,0% (IC95% 15,0-85,0%)  n=4
+     Riesgo no expuestos : 41,2% (IC95% 21,6-64,0%)  n=17
+     Diferencia de riesgo: 8,8 puntos (IC95% -33,0 a 48,9)
+     Riesgo relativo     : 1,21
+     Odds ratio (cond.)  : 1,40 (IC95% exacto 0,08 - 23,88)
+     p (Fisher bilateral): 1,000
+
+  Diabetes mellitus
+     Tabla 2x2       expuestos: 2 con / 2 sin evento  |  no expuestos: 7 con / 10 sin evento
+     Riesgo expuestos    : 50,0% (IC95% 15,0-85,0%)  n=4
+     Riesgo no expuestos : 41,2% (IC95% 21,6-64,0%)  n=17
+     Diferencia de riesgo: 8,8 puntos (IC95% -33,0 a 48,9)
+     Riesgo relativo     : 1,21
+     Odds ratio (cond.)  : 1,40 (IC95% exacto 0,08 - 23,88)
+     p (Fisher bilateral): 1,000
+
+  Tabaquismo activo
+     Tabla 2x2       expuestos: 1 con / 1 sin evento  |  no expuestos: 8 con / 11 sin evento
+     Riesgo expuestos    : 50,0% (IC95% 9,5-90,5%)  n=2
+     Riesgo no expuestos : 42,1% (IC95% 23,1-63,7%)  n=19
+     Diferencia de riesgo: 7,9 puntos (IC95% -38,1 a 52,7)
+     Riesgo relativo     : 1,19
+     Odds ratio (cond.)  : 1,35 (IC95% exacto 0,02 - 117,61)
+     p (Fisher bilateral): 1,000
+
+  Tto. sistemico previo
+     Tabla 2x2       expuestos: 3 con / 4 sin evento  |  no expuestos: 6 con / 8 sin evento
+     Riesgo expuestos    : 42,9% (IC95% 15,8-75,0%)  n=7
+     Riesgo no expuestos : 42,9% (IC95% 21,4-67,4%)  n=14
+     Diferencia de riesgo: 0,0 puntos (IC95% -36,5 a 38,6)
+     Riesgo relativo     : 1,00
+     Odds ratio (cond.)  : 1,00 (IC95% exacto 0,10 - 8,73)
+     p (Fisher bilateral): 1,000
+
+  Edad >= 65 anos
+     Tabla 2x2       expuestos: 6 con / 3 sin evento  |  no expuestos: 3 con / 9 sin evento
+     Riesgo expuestos    : 66,7% (IC95% 35,4-87,9%)  n=9
+     Riesgo no expuestos : 25,0% (IC95% 8,9-53,2%)  n=12
+     Diferencia de riesgo: 41,7 puntos (IC95% -0,4 a 68,4)
+     Riesgo relativo     : 2,67
+     Odds ratio (cond.)  : 5,44 (IC95% exacto 0,66 - 60,56)
+     p (Fisher bilateral): 0,087
+
+  Ki67 >= 20%
+     Tabla 2x2       expuestos: 7 con / 8 sin evento  |  no expuestos: 2 con / 2 sin evento
+     Riesgo expuestos    : 46,7% (IC95% 24,8-69,9%)  n=15
+     Riesgo no expuestos : 50,0% (IC95% 15,0-85,0%)  n=4
+     Diferencia de riesgo: -3,3 puntos (IC95% -44,6 a 38,7)
+     Riesgo relativo     : 0,93
+     Odds ratio (cond.)  : 0,88 (IC95% exacto 0,05 - 15,26)
+     p (Fisher bilateral): 1,000
+
+
+==========================================================================
+NOTA SOBRE INTERPRETACION
+==========================================================================
+  - Un IC95% del OR que incluye el 1 indica ausencia de significacion.
+  - Con n=21 los intervalos son necesariamente amplios: la ausencia de
+    significacion NO equivale a ausencia de efecto (error tipo II).
+  - No se aplica correccion por comparaciones multiples: el analisis es
+    exploratorio y generador de hipotesis.
+  - Normofraccionamiento e irradiacion ganglionar estan colinealizados
+    (ver seccion 2.5); sus OR no deben interpretarse como independientes.
+  - DISCORDANCIA p vs IC (endpoint primario, normofraccionamiento):
+    el p exacto es 0,047 (significativo) mientras el IC95% condicional
+    del OR (0,93 a infinito) incluye el 1. No es un error: el IC exacto
+    de Cornfield es CONSERVADOR respecto al p bilateral de Fisher, y
+    ambos pueden discrepar cuando existe una celda con frecuencia 0
+    (aqui: 0 normofraccionados libres de radiodermitis), lo que hace
+    que el OR no sea estimable (infinito). En este escenario la medida
+    interpretable es la DIFERENCIA DE RIESGO: +50,0 puntos porcentuales
+    (IC95% 7,6 a 73,2), que si excluye el 0 y confirma la asociacion.

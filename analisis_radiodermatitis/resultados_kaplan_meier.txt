@@ -1,0 +1,83 @@
+==========================================================================
+ANALISIS DE SUPERVIVENCIA — KAPLAN-MEIER
+Tiempo hasta la aparicion de radiodermitis de cualquier grado (>=1)
+==========================================================================
+  N = 21   Eventos = 14 (66,7%)   Censurados = 7
+  Origen: primera sesion de RT.  Escala: semanas.
+  Seguimiento maximo observado: 5 semanas.
+
+4.1. CURVA GLOBAL (toda la cohorte)
+--------------------------------------------------------------------------
+  Tabla de supervivencia libre de radiodermitis (S = probabilidad de permanecer LIBRE de RD)
+      Semana  En riesgo  Eventos  Censura  S(t) libre              IC95%  Incid.acum
+           0         21        0        0      100,0%       100,0-100,0%        0,0%
+           2         21        2        0       90,5%         67,0-97,5%        9,5%
+           3         19        4        0       71,4%         47,2-86,0%       28,6%
+           4         15        7        6       38,1%         18,3-57,8%       61,9%
+           5          2        1        1       19,0%          1,7-50,9%       81,0%
+
+  Mediana de supervivencia libre de radiodermitis: 4 semanas
+     (semana en que la probabilidad de seguir libre de RD cae al 50%)
+  Semana 2: supervivencia libre de RD 90,5% (IC95% 67,0-97,5%)  |  incidencia acumulada 9,5%
+  Semana 3: supervivencia libre de RD 71,4% (IC95% 47,2-86,0%)  |  incidencia acumulada 28,6%
+  Semana 4: supervivencia libre de RD 38,1% (IC95% 18,3-57,8%)  |  incidencia acumulada 61,9%
+  Semana 5: supervivencia libre de RD 19,0% (IC95% 1,7-50,9%)  |  incidencia acumulada 81,0%
+
+4.2. COMPARACION POR ESQUEMA DE FRACCIONAMIENTO
+--------------------------------------------------------------------------
+  Normofraccionamiento: n=7, eventos=7
+  
+      Semana  En riesgo  Eventos  Censura  S(t) libre              IC95%  Incid.acum
+           0          7        0        0      100,0%       100,0-100,0%        0,0%
+           3          7        2        0       71,4%         25,8-92,0%       28,6%
+           4          5        4        0       14,3%          0,7-46,5%       85,7%
+           5          1        1        0        0,0%           0,0-0,0%      100,0%
+
+  Hipofraccionamiento: n=14, eventos=7
+  
+      Semana  En riesgo  Eventos  Censura  S(t) libre              IC95%  Incid.acum
+           0         14        0        0      100,0%       100,0-100,0%        0,0%
+           2         14        2        0       85,7%         53,9-96,2%       14,3%
+           3         12        2        0       71,4%         40,6-88,2%       28,6%
+           4         10        3        6       50,0%         22,9-72,2%       50,0%
+
+  Test de log-rank (Mantel-Cox):
+     Observados vs esperados — Normofx: O=7 E=4,97  |  Hipofx: O=7 E=9,03
+     Chi-cuadrado = 1,757 (1 gl), p = 0,185
+     Hazard ratio (Peto) = 1,81 (normofx respecto a hipofx)
+     Mediana normofx: 4 sem  |  hipofx: 4 sem
+     -> Sin diferencia significativa en el TIEMPO hasta la aparicion.
+        Nota: el fraccionamiento se asocia a la GRAVEDAD de la
+        radiodermitis (ver seccion 3), no necesariamente a su
+        rapidez de aparicion.
+
+4.3. COMPARACION POR IRRADIACION GANGLIONAR
+--------------------------------------------------------------------------
+  Con irradiacion ganglionar : n=9, eventos=7, mediana 4 sem
+  Sin irradiacion ganglionar : n=12, eventos=7, mediana 4 sem
+  Log-rank: chi2 = 0,091, p = 0,763, HR (Peto) = 1,15
+
+4.4. ANALISIS DE SENSIBILIDAD (censura al finalizar la RT)
+--------------------------------------------------------------------------
+  Se repite el analisis censurando a los pacientes libres de evento al
+  terminar la radioterapia, en lugar de a la primera visita post-RT.
+  Mediana: 4 semanas (analisis principal: 4 semanas)
+  Log-rank por fraccionamiento: p = 0,982 (analisis principal: p = 0,185)
+  -> La CONCLUSION cualitativa se mantiene (ausencia de diferencia
+     significativa en el tiempo hasta la aparicion), pero el estadistico
+     de log-rank es MUY SENSIBLE al criterio de censura: al censurar al
+     final de la RT, los 7 pacientes hipofraccionados libres de evento
+     salen del riesgo en la semana 3 y dejan de aportar informacion
+     comparativa, con lo que el contraste se aproxima a la nulidad.
+     Esta inestabilidad refleja la escasez de eventos y refuerza que el
+     analisis temporal debe considerarse meramente descriptivo.
+
+4.5. SUPUESTOS Y LIMITACIONES
+--------------------------------------------------------------------------
+  - La semana de aparicion se registro en semanas enteras: existe
+    censura por intervalo no modelada (el evento ocurre en algun punto
+    de la semana declarada). El KM asume tiempos exactos.
+  - Todos los censurados pertenecen al grupo hipofraccionado, lo que
+    limita la comparacion de curvas mas alla de la semana 4.
+  - Con 14 eventos, la potencia para detectar diferencias moderadas en
+    el tiempo hasta el evento es baja.
